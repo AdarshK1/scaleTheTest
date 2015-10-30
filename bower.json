@@ -1,0 +1,17 @@
+{
+  "name": "scalethetest",
+  "version": "0.0.0",
+  "homepage": "none",
+  "authors": [
+    "AdarshK1 <addy2999@gmail.com>"
+  ],
+  "description": "Web App to scale test scores",
+  "main": "index.jade",
+  "moduleType": [
+    "globals"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.2.0"
+  }
+}
