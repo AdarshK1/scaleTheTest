@@ -9,7 +9,8 @@ html, body {
   text-align: center;
   background-color: #3F51B5;
   color: white;
-  padding: 0;
+  padding-top: 3vh;
   margin: 0;
-  height: 5vh;
+  height: 10vh;
+  font-size: 3em;
 }
