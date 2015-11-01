@@ -1,6 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Nova+Slim);
 html, body {
-  font-family: Nova Slim, cursive;
+  font-family: Roboto, sans-serif;
   padding: 0;
   margin: 0;
 }
@@ -13,4 +13,11 @@ html, body {
   margin: 0;
   height: 10vh;
   font-size: 3em;
+}
+
+#dataEntry paper-input {
+  width: 15vw;
+  padding-left: 3vw;
+  padding-right: 3vw;
+  padding-bottom: 2vh;
 }

@@ -3,12 +3,36 @@
   <head>
     <link rel="stylesheet" href="/stylesheet.css">
     <title>Scale The Test</title>
+    <link rel="import" href="/bower_components/paper-material/paper-material.html">
+    <link rel="import" href="/bower_components/paper-input/paper-input-container.html">
+    <link rel="import" href="/bower_components/paper-input/paper-input.html">
+    <link rel="import" href="/bower_components/paper-card/paper-card.html">
   </head>
   <body>
     <div id="headerBar">
       Time to Scale the Test
       
     </div>
-    <div></div>
+    <div id="dataEntry">
+      <paper-card elevation="2">
+        <paper-input label="Test Total" auto-validate pattern="[0-9]*" error-message="Only Numbers!"></paper-input>
+        <paper-input label="Curve Percentage" auto-validate pattern="[0-9]*" error-message="Only Numbers!" suffix="%" maxlength="2">				</paper-input>
+        <div id="enterScores">
+          <paper-input label="Enter a Score, then press enter" auto-validate pattern="[0-9]*" error-message="Only Numbers!" id="enterInput"></paper-input>
+          <script type="text/javascript">
+            var scores = [];
+            var inp = document.getElementById("enterInput");
+            inp.onkeypress = function(e){
+            	if(e.keyCode == '13'){
+            		val = inp.value;
+            		scores.push(val);
+            		console.log(scores)
+            		inp.value = ""
+            	}
+            }
+          </script>
+        </div>
+      </paper-card>
+    </div>
   </body>
 </html>
