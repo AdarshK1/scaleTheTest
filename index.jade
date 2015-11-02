@@ -7,6 +7,7 @@ html
 		link(rel='import', href='/bower_components/paper-input/paper-input-container.html')
 		link(rel='import', href='/bower_components/paper-input/paper-input.html')
 		link(rel='import', href='/bower_components/paper-card/paper-card.html')
+		link(rel='import', href='/bower_components/paper-button/paper-button.html')
 	body
 		div#headerBar.
 			Time to Scale the Test
@@ -15,7 +16,9 @@ html
 			paper-card(elevation="2")
 				paper-input(label="Test Total" auto-validate pattern="[0-9]*" error-message="Only Numbers!")
 
-				paper-input(label="Curve Percentage" auto-validate pattern="[0-9]*" error-message="Only Numbers!" suffix="%" maxlength="2")				
+				paper-input(label="Curve Percentage" auto-validate pattern="[0-9]*" error-message="Only Numbers!" suffix="%" maxlength="2")
+					div(suffix)
+						%				
 			
 				div#enterScores
 					paper-input(label="Enter a Score, then press enter" auto-validate pattern="[0-9]*" error-message="Only Numbers!" id="enterInput")
@@ -31,4 +34,9 @@ html
 								inp.value = ""
 							}
 						}
+
+					paper-button(raised).
+						Calculate!
+					
+
 		

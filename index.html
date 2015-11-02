@@ -7,6 +7,7 @@
     <link rel="import" href="/bower_components/paper-input/paper-input-container.html">
     <link rel="import" href="/bower_components/paper-input/paper-input.html">
     <link rel="import" href="/bower_components/paper-card/paper-card.html">
+    <link rel="import" href="/bower_components/paper-button/paper-button.html">
   </head>
   <body>
     <div id="headerBar">
@@ -16,7 +17,9 @@
     <div id="dataEntry">
       <paper-card elevation="2">
         <paper-input label="Test Total" auto-validate pattern="[0-9]*" error-message="Only Numbers!"></paper-input>
-        <paper-input label="Curve Percentage" auto-validate pattern="[0-9]*" error-message="Only Numbers!" suffix="%" maxlength="2">				</paper-input>
+        <paper-input label="Curve Percentage" auto-validate pattern="[0-9]*" error-message="Only Numbers!" suffix="%" maxlength="2">
+          <div suffix>%				</div>
+        </paper-input>
         <div id="enterScores">
           <paper-input label="Enter a Score, then press enter" auto-validate pattern="[0-9]*" error-message="Only Numbers!" id="enterInput"></paper-input>
           <script type="text/javascript">
@@ -30,7 +33,9 @@
             		inp.value = ""
             	}
             }
+            
           </script>
+          <paper-button raised>Calculate!</paper-button>
         </div>
       </paper-card>
     </div>

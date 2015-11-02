@@ -3,6 +3,7 @@ html, body {
   font-family: Roboto, sans-serif;
   padding: 0;
   margin: 0;
+  height: 100%;
 }
 
 #headerBar {
@@ -15,9 +16,14 @@ html, body {
   font-size: 3em;
 }
 
+#dataEntry paper-card {
+  height: 100vh;
+  width: 44vw;
+}
+
 #dataEntry paper-input {
   width: 15vw;
-  padding-left: 3vw;
+  padding-left: 12vw;
   padding-right: 3vw;
   padding-bottom: 2vh;
 }
