@@ -29,14 +29,29 @@ html
 						inp.onkeypress = function(e){
 							if(e.keyCode == '13'){
 								val = inp.value;
+								inp.value = "";
 								scores.push(val);
-								console.log(scores)
-								inp.value = ""
+								var list = document.getElementById("scoreList");
+								var entry = document.createElement("li");
+								var input = document.createElement("paper-input")
+								entry.appendChild(input);
+								input.value = val;
+								list.appendChild(entry);
+								
 							}
 						}
 
-					paper-button(raised).
-						Calculate!
-					
+					paper-button(raised id = "calculate" onClick="doStuff") Calculate!
+						script(type="text/javascript").
+							function doStuff(){
+
+							}
+
+
+
+		div#dataDisplay
+			ul#scoreList
+				li Dummy Score
+
 
 		

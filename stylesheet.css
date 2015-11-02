@@ -16,14 +16,32 @@ html, body {
   font-size: 3em;
 }
 
-#dataEntry paper-card {
+#dataEntry {
   height: 100vh;
-  width: 44vw;
+  width: 50vw;
+  float: left;
+}
+
+#dataEntry paper-card {
+  height: 100%;
+  width: 100%;
 }
 
 #dataEntry paper-input {
   width: 15vw;
-  padding-left: 12vw;
+  padding-left: 17vw;
   padding-right: 3vw;
   padding-bottom: 2vh;
+}
+
+#dataEntry paper-button {
+  margin-left: 21vw;
+}
+
+#displayData {
+  float: right;
+}
+
+#displayData ul {
+  text-decoration: none;
 }
