@@ -11,17 +11,20 @@
   </head>
   <body>
     <div id="headerBar">
-      Time to Scale the Test
+      Test Scaler
       
     </div>
     <div id="dataEntry">
       <paper-card elevation="2">
-        <paper-input label="Test Total" auto-validate pattern="[0-9]*" error-message="Only Numbers!"></paper-input>
-        <paper-input label="Curve Percentage" auto-validate pattern="[0-9]*" error-message="Only Numbers!" suffix="%" maxlength="2">
-          <div suffix>%				</div>
+        <paper-input label="Test Total" auto-validate pattern="[0-9]*" error-message="Only Numbers!" id="testTotal"></paper-input>
+        <paper-input label="Curve Percentage" auto-validate pattern="[0-9]*" error-message="Only Numbers!" suffix="%" maxlength="2" id="curve">
+          <div suffix>
+            %
+            
+          </div>
         </paper-input>
         <div id="enterScores">
-          <paper-input label="Enter a Score, then press enter" auto-validate pattern="[0-9]*" error-message="Only Numbers!" id="enterInput"></paper-input>
+          <paper-input label="Enter a Score, then press enter" auto-validate pattern="[0-9]*" error-message="Only Numbers!" id="enterInput"> </paper-input>
           <script type="text/javascript">
             var scores = [];
             var inp = document.getElementById("enterInput");
@@ -32,32 +35,111 @@
             		scores.push(val);
             		var list = document.getElementById("scoreList");
             		var entry = document.createElement("li");
-            		var input = document.createElement("paper-input")
-            		entry.appendChild(input);
-            		input.value = val;
+            		entry.appendChild(document.createTextNode(val));
+            		entry.setAttribute("contenteditable", "true");
             		list.appendChild(entry);
             		
             	}
             }
             
           </script>
-          <paper-button raised id="calculate" onClick="doStuff">Calculate!
+          <paper-button raised id="calculate" onClick="calculate()">Calculate
             <script type="text/javascript">
-              function doStuff(){
+              function calculate(){
+              	var scores = []
+              	var list = document.getElementById("scoreList");
+              	var items = list.getElementsByTagName("li");
+              	var curveInp = document.getElementById("curve");
+              	var totalInp = document.getElementById("testTotal");
+              
+              	for(var i = 1; i < items.length; i++){
+              		scores.push(parseFloat(items[i].innerText));
+              	}
+              	scores.sort();
+              	console.log(scores);
+              	var mean = findMean(scores);
+              	var median = findMedian(scores);
+              	var mode = findMode(scores);
+              	var highest = scores[scores.length - 1];
+              	var lowest = scores[0];
+              	var curvePercent = parseInt(curveInp.value);
+              	var total = parseInt(testTotal.value);
+              	document.getElementById("highest").textContent = "Highest Score: " + highest;
+              	document.getElementById("mean").textContent = ;
+              	document.getElementById("median").textContent = ;
+              	document.getElementById().textContent = ;
+              	document.getElementById().textContent = ;
+              	console.log(total);
+              	console.log(curvePercent);
               
               }
               
+              function findMedian(scores){
+              	if (scores.length % 2 == 1){
+              		return scores[Math.floor(scores.length / 2) + 1];
+              	}
+              	sum = scores[scores.length / 2] + scores[scores.length / 2 + 1];
+              	
+              	return sum / 2.0;
+              }
               
+              function findMean(scores){
+              	sum = 0;
+              
+              	for(var i = 0; i < scores.length; i++){
+              		sum = sum + scores[i]
+              	} 
+              	return sum / scores.length;
+              }
+              
+              function findMode(scores){
+              	if(scores.length == 0){
+              		return null;
+              	}	
+              
+              	var modeMap = {};
+              	var modes = [scores[0]];
+              	var maxCount = 1;
+              
+              	for(var i = 0; i < scores.length; i++){
+              		var el = scores[i];
+              
+              		if(modeMap[el] == null)
+              			modeMap[el] = 1;
+              		else 
+              			modeMap[el]++;
+              
+              		if(modeMap[el] > maxCount){
+              			modes[0]= [el];
+              			maxCount = modeMap[el]
+              		}
+              
+              		else if (modeMap[el] == maxCount){
+              			modes.push(el);
+              			maxCount = modeMap[el];
+              		}
+              	}
+              	return modes;
+              }
               
             </script>
           </paper-button>
         </div>
       </paper-card>
     </div>
-    <div id="dataDisplay">
-      <ul id="scoreList">
-        <li>Dummy Score</li>
-      </ul>
+    <div id="dataDisplay">		
+      <h1>Entered Scores</h1>
+    </div>
+    <div class="stats">
+      <paper-card id="total">Total: _________</paper-card>
+      <paper-card id="mean">Mean Score: _________</paper-card>
+      <paper-card id="median">Median Score: _________</paper-card>
+    </div>
+    <div class="stats">
+      <paper-card id="mode">Mode Score: _________</paper-card>
+      <paper-card id="highest">Highest Score: _________</paper-card>
+      <paper-card id="lowest">Lowest Score: _________</paper-card>
+      <paper-card id="scaleAmount">Scale: _________</paper-card>
     </div>
   </body>
 </html>

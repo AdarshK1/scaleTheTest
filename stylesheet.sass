@@ -13,10 +13,10 @@ html, body
 	text-align: center
 	background-color: $prim-color
 	color: white
-	padding-top: 3vh
+	padding-top: 1.5vh
 	margin: 0
-	height: 10vh
-	font-size: 3em
+	height: 5vh
+	font-size: 2em
 
 #dataEntry
 	height: 100vh
@@ -26,18 +26,31 @@ html, body
 #dataEntry paper-card
 	height: 100%
 	width: 100%
+	text-align: center
 	
 #dataEntry paper-input
-	width: 15vw
-	padding-left: 17vw
+	width: 25vw
+	padding-left: 12vw
 	padding-right:3vw
 	padding-bottom:2vh
 
 #dataEntry paper-button
-	margin-left: 21vw
 
-#displayData
-	float: right
-
-#displayData ul
+#dataDisplay ul
 	text-decoration: none
+
+#stats
+	display:table
+	postition:absolute
+	bottom:0
+	margin-left:50vw;
+
+.stats paper-card
+	height: 10vh
+	width:25vw
+	text-align: center
+	display:table-cell
+
+paper-button
+	background-color: $prim-color
+	color: white
