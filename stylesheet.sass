@@ -8,7 +8,7 @@ html, body
 	padding: 0
 	margin: 0
 	height: 100%
-	
+
 #headerBar
 	text-align: center
 	background-color: $prim-color
@@ -19,7 +19,7 @@ html, body
 	font-size: 2em
 
 #dataEntry
-	height: 100vh
+	height: 95vh
 	width: 50vw
 	float: left
 
@@ -34,16 +34,22 @@ html, body
 	padding-right:3vw
 	padding-bottom:2vh
 
-#dataEntry paper-button
-
-#dataDisplay ul
+#lists ul
 	text-decoration: none
+	display: inline-block
+	list-style-type: none
 
-#stats
-	display:table
-	postition:absolute
-	bottom:0
-	margin-left:50vw;
+#dataDisplay li
+	margin-left: 3vw
+
+#dataDisplay h1
+	text-align: center
+
+.stats
+	position: absolute
+	bottom: 0
+	width: 50vw
+
 
 .stats paper-card
 	height: 10vh

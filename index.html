@@ -33,10 +33,20 @@
             		val = inp.value;
             		inp.value = "";
             		scores.push(val);
-            		var list = document.getElementById("scoreList");
+            		var bWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
+            		var hWidth = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
+            		var h = document.getElementById("scoreList").scrollHeight;
+            		console.log(h);
+            		if (h < hWidth * .75){
+            			var list = document.getElementById("scoreList");
+            		}
+            		else{
+            			var list = document.getElementById("scoreListTwo");	
+            		}
             		var entry = document.createElement("li");
             		entry.appendChild(document.createTextNode(val));
             		entry.setAttribute("contenteditable", "true");
+            		console.log(entry);
             		list.appendChild(entry);
             		
             	}
@@ -47,31 +57,55 @@
             <script type="text/javascript">
               function calculate(){
               	var scores = []
-              	var list = document.getElementById("scoreList");
-              	var items = list.getElementsByTagName("li");
+              	var list1 = document.getElementById("scoreList");
+              	var list2 = document.getElementById("scoreListTwo");
+              	var items = list1.getElementsByTagName("li");
+              	var items2 = list2.getElementsByTagName("li");
               	var curveInp = document.getElementById("curve");
               	var totalInp = document.getElementById("testTotal");
               
-              	for(var i = 1; i < items.length; i++){
+              	for(var i = 0; i < items.length; i++){
               		scores.push(parseFloat(items[i].innerText));
               	}
-              	scores.sort();
-              	console.log(scores);
-              	var mean = findMean(scores);
-              	var median = findMedian(scores);
-              	var mode = findMode(scores);
-              	var highest = scores[scores.length - 1];
-              	var lowest = scores[0];
-              	var curvePercent = parseInt(curveInp.value);
-              	var total = parseInt(testTotal.value);
-              	document.getElementById("highest").textContent = "Highest Score: " + highest;
-              	document.getElementById("mean").textContent = ;
-              	document.getElementById("median").textContent = ;
-              	document.getElementById().textContent = ;
-              	document.getElementById().textContent = ;
-              	console.log(total);
-              	console.log(curvePercent);
               
+              	for(var i = 0; i < items2.length; i++){
+              		scores.push(parseFloat(items2[i].innerText));
+              	}
+              
+              	scores.sort();
+              	var curvePercent = parseInt(curveInp.value);
+              	document.getElementById("highest").textContent = "Highest Score: " + scores[scores.length - 1];
+              	document.getElementById("mean").textContent = "Mean Score: " + findMean(scores);
+              	document.getElementById("median").textContent = "Median Score: " + findMedian(scores);
+              	modes = findMode(scores);
+              	console.log(modes);
+              	document.getElementById("mode").textContent = "Mode Score: " + modes[0];
+              	document.getElementById("lowest").textContent = "Lowest Score: " + scores[0];
+              	document.getElementById("total").textContent = "Total Score: " + parseInt(testTotal.value);
+              	document.getElementById("scaleAmount").textContent = "Scale Amount: " + getScale(curvePercent, findMedian(scores), modes[0], parseInt(testTotal.value));
+              }
+              
+              function getScale(curvePercent, median, mode, total){
+              	curveBench = curvePercent / 100 * total;
+              	if (median < mode){
+              		if (median < curveBench){
+              			scale = curveBench - median
+              
+              		}
+              	}
+              
+              	else if (mode < median || mode == median){
+              		if (mode < curveBench){
+              			scale = curveBench - mode
+              			console.log(scale)
+              		}
+              	}
+              
+              	else if (median > curveBench && mode > curveBench){
+              		scale = 0
+              	}
+              
+              	return scale;
               }
               
               function findMedian(scores){
@@ -110,7 +144,7 @@
               			modeMap[el]++;
               
               		if(modeMap[el] > maxCount){
-              			modes[0]= [el];
+              			modes[0]= el;
               			maxCount = modeMap[el]
               		}
               
@@ -129,17 +163,34 @@
     </div>
     <div id="dataDisplay">		
       <h1>Entered Scores</h1>
-    </div>
-    <div class="stats">
-      <paper-card id="total">Total: _________</paper-card>
-      <paper-card id="mean">Mean Score: _________</paper-card>
-      <paper-card id="median">Median Score: _________</paper-card>
-    </div>
-    <div class="stats">
-      <paper-card id="mode">Mode Score: _________</paper-card>
-      <paper-card id="highest">Highest Score: _________</paper-card>
-      <paper-card id="lowest">Lowest Score: _________</paper-card>
-      <paper-card id="scaleAmount">Scale: _________</paper-card>
+      <div id="lists">
+        <ul id="scoreList">
+          <li>26</li>
+          <li>28</li>
+          <li>29</li>
+          <li>14</li>
+          <li>25</li>
+          <li>10</li>
+          <li>22</li>
+          <li>22</li>
+          <li>22</li>
+          <li>21</li>
+        </ul>
+        <ul id="scoreListTwo"></ul>
+      </div>
+      <div class="stats">
+        <div class="stats1">
+          <paper-card id="total">Total: _________</paper-card>
+          <paper-card id="mean">Mean Score: _________</paper-card>
+          <paper-card id="median">Median Score: _________</paper-card>
+        </div>
+        <div class="stats2">
+          <paper-card id="mode">Mode Score: _________</paper-card>
+          <paper-card id="highest">Highest Score: _________</paper-card>
+          <paper-card id="lowest">Lowest Score: _________</paper-card>
+          <paper-card id="scaleAmount">Scale: _________</paper-card>
+        </div>
+      </div>
     </div>
   </body>
 </html>

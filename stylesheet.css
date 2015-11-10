@@ -17,7 +17,7 @@ html, body {
 }
 
 #dataEntry {
-  height: 100vh;
+  height: 95vh;
   width: 50vw;
   float: left;
 }
@@ -35,15 +35,24 @@ html, body {
   padding-bottom: 2vh;
 }
 
-#dataDisplay ul {
+#lists ul {
   text-decoration: none;
+  display: inline-block;
+  list-style-type: none;
 }
 
-#stats {
-  display: table;
-  postition: absolute;
+#dataDisplay li {
+  margin-left: 3vw;
+}
+
+#dataDisplay h1 {
+  text-align: center;
+}
+
+.stats {
+  position: absolute;
   bottom: 0;
-  margin-left: 50vw;
+  width: 50vw;
 }
 
 .stats paper-card {
